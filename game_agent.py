@@ -197,16 +197,17 @@ class CustomPlayer:
 
         # test fail so commented out
         # if moving take center whenever possible
-        # if (int(game.width / 2), int(game.height / 2)) in legal_moves:
+        if (int(game.width / 2), int(game.height / 2)) in legal_moves:
             # no need to memorize
-            # return (int(game.width / 2), int(game.height / 2))
+            return (int(game.width / 2), int(game.height / 2))
 
         # print 'first mover [',self.first_mover,'][',self.turns
 
         # test fail so commented out
         # if you are player one try reflection:
-        SKIP_REFLECT_MOVE = False
-        if SKIP_REFLECT_MOVE and move_to_return == DUMMY_MOVE:
+        USE_REFLECT_MOVE = True
+
+        if USE_REFLECT_MOVE and move_to_return == DUMMY_MOVE:
             for index_matrix in self.indicee:
                 if self.first_mover:
                     reflect_move = self.get_reflect_move(game, index_matrix, legal_moves)
@@ -490,7 +491,7 @@ class CustomPlayer:
         game_state_str = str(game.__board_state__)
         cache = self.getMax_MiniMax_cache
 
-        if False and game_state_str in cache:
+        if game_state_str in cache:
             if depth in cache[game_state_str]:
                 raise 'getMax_MiniMax found cache hit 1'
                 if move in cache[game_state_str][depth]:
