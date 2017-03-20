@@ -52,9 +52,13 @@ def custom_score(game, player, turns=0):
     if game.is_winner(player):
         return float("inf")
 
-    own_moves = len(game.get_legal_moves(player))
+    moves = game.get_legal_moves(player)
+
+    own_moves = len(moves)
     opp_moves = len(game.get_legal_moves(game.get_opponent(player)))
-    return float(own_moves - opp_moves)
+
+    edge_penalty = sum([(x - 3) * (x - 3) + (y - 3) * (y - 3) for x, y in moves]) / ((3 * 3 * 2 * len(moves)) + .001)
+    return float(own_moves - opp_moves) - edge_penalty
 
 
 class CustomPlayer:
