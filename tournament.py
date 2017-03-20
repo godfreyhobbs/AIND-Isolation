@@ -18,7 +18,7 @@ agentB at (1, 3) as player 2 then play to conclusion; the agents swap
 initiative in the second match with agentB at (5, 2) as player 1 and agentA at
 (1, 3) as player 2.
 """
-
+from __future__ import print_function
 import itertools
 import random
 import warnings

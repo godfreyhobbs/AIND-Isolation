@@ -6,7 +6,7 @@ augment the test suite with your own test cases to further test your code.
 You must test your agent's strength against a set of agents with known
 relative strength using tournament.py and include the results in your report.
 """
-
+from __future__ import print_function
 import logging
 
 logging.basicConfig(level=logging.ERROR)
