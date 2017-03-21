@@ -1,3 +1,11 @@
+test:
+  override:
+    - python3.6 agent_test
+
+  post:
+    - python3.6 ./tournament.py
+        timeout: 9000
+
 machine:
   python:
     version: 3.6.0
