@@ -58,7 +58,7 @@ def custom_score(game, player, turns=0):
     corner_bonus = len(corners)
 
     own_moves = len(game.get_legal_moves(player))
-
+    # corner bonus times two
     return float(own_moves + 2.0 * corner_bonus)
 
 
