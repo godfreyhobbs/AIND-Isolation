@@ -27,8 +27,8 @@ from collections import namedtuple
 
 from isolation import Board
 from sample_players import RandomPlayer
-# from sample_players import null_score
-# from sample_players import open_move_score
+from sample_players import null_score
+from sample_players import open_move_score
 from sample_players import improved_score
 from game_agent import CustomPlayer
 from game_agent import custom_score
@@ -138,8 +138,8 @@ def play_round(agents, num_matches):
 def main():
 
     HEURISTICS = [
-        # ("Null", null_score),
-        #           ("Open", open_move_score),
+        ("Null", null_score),
+                  ("Open", open_move_score),
                   ("Improved", improved_score)]
     AB_ARGS = {"search_depth": 5, "method": 'alphabeta', "iterative": False}
     MM_ARGS = {"search_depth": 3, "method": 'minimax', "iterative": False}
@@ -161,9 +161,9 @@ def main():
     # systems; i.e., the performance of the student agent is considered
     # relative to the performance of the ID_Improved agent to account for
     # faster or slower computers.
-    # test_agents = [Agent(CustomPlayer(score_fn=improved_score, **CUSTOM_ARGS), "ID_Improved"),
-    #                Agent(CustomPlayer(score_fn=custom_score, **CUSTOM_ARGS), "Student")]
-    test_agents = [Agent(CustomPlayer(score_fn=custom_score, **CUSTOM_ARGS), "Student")]
+    test_agents = [Agent(CustomPlayer(score_fn=improved_score, **CUSTOM_ARGS), "ID_Improved"),
+                   Agent(CustomPlayer(score_fn=custom_score, **CUSTOM_ARGS), "Student")]
+    # test_agents = [Agent(CustomPlayer(score_fn=custom_score, **CUSTOM_ARGS), "Student")]
 
     print(DESCRIPTION)
     for agentUT in test_agents:
