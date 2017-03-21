@@ -136,7 +136,7 @@ def custom_score(game, player, turns=0):
 
         own_moves = len(moves)
         opp_moves = len(game.get_legal_moves(game.get_opponent(player)))
-
+        # bonus for move that are not corners
         return float(own_moves + no_corner_bonus - opp_moves)
 
 
