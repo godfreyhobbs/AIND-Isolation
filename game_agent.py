@@ -50,11 +50,16 @@ def custom_score(game, player, turns=0):
     if game.is_winner(player):
         return float("inf")
 
-    moves = game.get_legal_moves(player)
-    own_moves = len(moves)
+    # try to avoid the corners
+    opp_moves = game.get_legal_moves(game.get_opponent(player))
 
-    turns = (game.width * game.height - len(game.get_blank_spaces())) * .5
-    return float(own_moves + turns                 )
+    # try to corner the opponent
+    corners = [move for move in opp_moves if move != (0, 0) and move != (0, 7) and move != (7, 0) and move != (7, 7)]
+    corner_bonus = len(corners)
+
+    own_moves = len(game.get_legal_moves(player))
+
+    return float(own_moves + 2.0 * corner_bonus)
 
 
 #
