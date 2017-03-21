@@ -1,6 +1,6 @@
 test:
   override:
-    - python3.6 agent_test
+    - python3.6 ./agent_test.py
 
   post:
     - python3.6 ./tournament.py:
