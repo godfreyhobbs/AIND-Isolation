@@ -21,45 +21,45 @@ class Timeout(Exception):
     """Subclass base exception for code clarity."""
     pass
 
-#
-# def custom_score(game, player, turns=0):
-#     """Calculate the heuristic value of a game state from the point of view
-#     of the given player.
-#
-#     Note: this function should be called from within a Player instance as
-#     `self.score()` -- you should not need to call this function directly.
-#
-#     Parameters
-#     ----------
-#     game : `isolation.Board`
-#         An instance of `isolation.Board` encoding the current state of the
-#         game (e.g., player locations and blocked cells).
-#
-#     player : object
-#         A player instance in the current game (i.e., an object corresponding to
-#         one of the player objects `game.__player_1__` or `game.__player_2__`.)
-#
-#     Returns
-#     -------
-#     float
-#         The heuristic value of the current game state to the specified player.
-#     """
-#     if game.is_loser(player):
-#         return float("-inf")
-#
-#     if game.is_winner(player):
-#         return float("inf")
-#
-#     # try to avoid the corners
-#     opp_moves = game.get_legal_moves(game.get_opponent(player))
-#
-#     # try to corner the opponent
-#     corners = [move for move in opp_moves if move != (0, 0) and move != (0, 7) and move != (7, 0) and move != (7, 7)]
-#     corner_bonus = len(corners)
-#
-#     own_moves = len(game.get_legal_moves(player))
-#     # corner bonus times two
-#     return float(own_moves + 2.0 * corner_bonus)
+
+def custom_score(game, player, turns=0):
+    """Calculate the heuristic value of a game state from the point of view
+    of the given player.
+
+    Note: this function should be called from within a Player instance as
+    `self.score()` -- you should not need to call this function directly.
+
+    Parameters
+    ----------
+    game : `isolation.Board`
+        An instance of `isolation.Board` encoding the current state of the
+        game (e.g., player locations and blocked cells).
+
+    player : object
+        A player instance in the current game (i.e., an object corresponding to
+        one of the player objects `game.__player_1__` or `game.__player_2__`.)
+
+    Returns
+    -------
+    float
+        The heuristic value of the current game state to the specified player.
+    """
+    if game.is_loser(player):
+        return float("-inf")
+
+    if game.is_winner(player):
+        return float("inf")
+
+    # try to avoid the corners
+    opp_moves = game.get_legal_moves(game.get_opponent(player))
+
+    # try to corner the opponent
+    corners = [move for move in opp_moves if move != (0, 0) and move != (0, 7) and move != (7, 0) and move != (7, 7)]
+    corner_bonus = len(corners)
+
+    own_moves = len(game.get_legal_moves(player))
+    # corner bonus times two
+    return float(own_moves + 2.0 * corner_bonus)
 
 #
 # def custom_score(game, player, turns=0):
@@ -101,43 +101,43 @@ class Timeout(Exception):
 #     edge_penalty = sum([(x - 3) * (x - 3) + (y - 3) * (y - 3) for x, y in moves]) / ((3 * 3 * 2 * len(moves)) + .001)
 #     return float(own_moves - opp_moves) - edge_penalty
 
-def custom_score(game, player, turns=0):
-        """Calculate the heuristic value of a game state from the point of view
-        of the given player.
-
-        Note: this function should be called from within a Player instance as
-        `self.score()` -- you should not need to call this function directly.
-
-        Parameters
-        ----------
-        game : `isolation.Board`
-            An instance of `isolation.Board` encoding the current state of the
-            game (e.g., player locations and blocked cells).
-
-        player : object
-            A player instance in the current game (i.e., an object corresponding to
-            one of the player objects `game.__player_1__` or `game.__player_2__`.)
-
-        Returns
-        -------
-        float
-            The heuristic value of the current game state to the specified player.
-        """
-        if game.is_loser(player):
-            return float("-inf")
-
-        if game.is_winner(player):
-            return float("inf")
-
-        moves = game.get_legal_moves(player)
-        # try to avoid the corners
-        no_corners = [move for move in moves if move != (0, 0) and move != (0, 7) and move != (7, 0) and move != (7, 7)]
-        no_corner_bonus = len(no_corners)
-
-        own_moves = len(moves)
-        opp_moves = len(game.get_legal_moves(game.get_opponent(player)))
-        # bonus for move that are not corners
-        return float(own_moves + no_corner_bonus - opp_moves)
+# def custom_score(game, player, turns=0):
+#         """Calculate the heuristic value of a game state from the point of view
+#         of the given player.
+#
+#         Note: this function should be called from within a Player instance as
+#         `self.score()` -- you should not need to call this function directly.
+#
+#         Parameters
+#         ----------
+#         game : `isolation.Board`
+#             An instance of `isolation.Board` encoding the current state of the
+#             game (e.g., player locations and blocked cells).
+#
+#         player : object
+#             A player instance in the current game (i.e., an object corresponding to
+#             one of the player objects `game.__player_1__` or `game.__player_2__`.)
+#
+#         Returns
+#         -------
+#         float
+#             The heuristic value of the current game state to the specified player.
+#         """
+#         if game.is_loser(player):
+#             return float("-inf")
+#
+#         if game.is_winner(player):
+#             return float("inf")
+#
+#         moves = game.get_legal_moves(player)
+#         # try to avoid the corners
+#         no_corners = [move for move in moves if move != (0, 0) and move != (0, 7) and move != (7, 0) and move != (7, 7)]
+#         no_corner_bonus = len(no_corners)
+#
+#         own_moves = len(moves)
+#         opp_moves = len(game.get_legal_moves(game.get_opponent(player)))
+#         # bonus for move that are not corners
+#         return float(own_moves + no_corner_bonus - opp_moves)
 
 
 class CustomPlayer:
